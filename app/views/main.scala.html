@@ -1,0 +1,50 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Over Under Betting">
+    <meta name="author" content="Andrew Reitz">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+    <title>@title</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/main.css")">
+
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Create New</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+            <h3 class="text-muted">N.O.D.E.A.T.H Over Under</h3>
+        </div>
+
+        <div class="jumbotron">
+            <h1>N.O.D.E.A.T.H Over Under</h1>
+            <p class="lead">Kitten Ipsum mercedes love cat kitties front purses she, kitten kittens adopted couch odd sleeping nap cat me meowlly healing.</p>
+        </div>
+
+        @content
+
+        <div class="footer">
+            <p>&copy; N.O.D.E.A.T.H 2014</p>
+        </div>
+
+    </div> <!-- /container -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="@routes.Assets.at("javascripts/index.js")"></script>
+</body>
+</html>
