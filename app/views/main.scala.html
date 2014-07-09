@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit request: play.api.mvc.Request[Any])
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,15 +24,16 @@
     <div class="container">
         <div class="header">
             <ul class="nav nav-pills pull-right">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Create New</a></li>
-                <li><a href="#">Login</a></li>
+                <li @if(request.uri == "/") { class="active" }><a href="@routes.Application.index">Home</a></li>
+                <li @if(request.uri == "/create") { class="active" }><a href="@routes.Application.createNew">Create New</a></li>
+                <li @if(request.uri == "/login") { class="active" }><a href="@routes.Application.login">Login</a></li>
             </ul>
             <h3 class="text-muted">N.O.D.E.A.T.H Over Under</h3>
         </div>
 
         <div class="jumbotron">
-            <h1>N.O.D.E.A.T.H Over Under</h1>
+            <h1>N.O.D.E.A.T.H</h1>
+            <h2>Over Under</h2>
             <p class="lead">Kitten Ipsum mercedes love cat kitties front purses she, kitten kittens adopted couch odd sleeping nap cat me meowlly healing.</p>
         </div>
 

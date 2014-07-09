@@ -1,12 +1,21 @@
 package controllers
 
-import play.api._
 import play.api.mvc._
 
 object Application extends Controller {
 
-  def index = Action {
-    Ok(views.html.index("Hello, World!"))
+  /** Main page displaying all bets */
+  def index = Action { implicit request =>
+    Ok(views.html.index(""))
   }
 
+  /** Create a new bet */
+  def createNew = Action { implicit request =>
+    Ok(views.html.index(""))
+  }
+
+  /** Login / signup page */
+  def login = Action { implicit request =>
+    Ok(views.html.index(""))
+  }
 }
