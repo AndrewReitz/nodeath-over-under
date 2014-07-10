@@ -7,7 +7,8 @@
     <div class="col-xs-6">
         <h4>@bet.title</h4>
         <p>@bet.description</p>
-        <a href="@routes.Application.getBet(bet.id)"><button type="button" class="btn btn-info">Details</button></a>
+        <a href="@routes.Application.placeBet(bet.id)"><button type="button" class="btn btn-info">Make Bet</button></a>
+        <a href="@routes.Application.getBetDetails(bet.id)"><button type="button" class="btn btn-primary">Details</button></a>
     </div>
     }
 </div>

@@ -5,7 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index
 GET     /create                     controllers.Application.createNewBet
-GET     /bet:id                     controllers.Application.getBet(id: Long)
+GET     /bet/:id                    controllers.Application.placeBet(id: Long)
+GET     /getBetDetails/:id          controllers.Application.getBetDetails(id: Long)
 
 POST    /addBet                     controllers.Application.addBet
 POST    /addPersonBet               controllers.Application.addPersonBet

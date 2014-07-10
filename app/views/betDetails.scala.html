@@ -1,0 +1,6 @@
+@(bet: models.Bet)(implicit request: play.api.mvc.Request[Any])
+
+@main("N.O.D.E.A.T.H Over Under") {
+@header(bet.title, bet.description)
+@bet.peopleBets.length
+}
