@@ -7,9 +7,17 @@ import play.db.ebean.Model
 object BetType extends Enumeration {
   type BetType = Value
   val Over, Under = Value
+
+  def fromString(s: String): BetType = {
+    for (value <- values) {
+      if (value.toString == s) {
+        return value
+      }
+    }
+    throw new IllegalStateException("Unknown Bet Type")
+  }
 }
 
-@Entity class PersonBet extends Model {
+@Entity class PersonBet(val name: String, val betType: BetType = BetType.Over) extends Model {
   @Id var id: Long = 0
-  var betType: BetType = BetType.Over
 }

@@ -4,8 +4,9 @@ import javax.persistence._
 
 import play.db.ebean.Model
 
-@Entity class Bet extends Model {
+import scala.collection.mutable.ListBuffer
+
+@Entity class Bet(val title: String, val description: String) extends Model {
   @Id var id: Long = 0
-  var title: String = ""
-  var description: String = ""
+  @OneToMany var peopleBets: ListBuffer[PersonBet] = ListBuffer()
 }

@@ -4,8 +4,11 @@
 
 # Home page
 GET     /                           controllers.Application.index
-GET     /create                     controllers.Application.createNew
-GET     /login                      controllers.Application.login
+GET     /create                     controllers.Application.createNewBet
+GET     /bet:id                     controllers.Application.getBet(id: Long)
+
+POST    /addBet                     controllers.Application.addBet
+POST    /addPersonBet               controllers.Application.addPersonBet
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,15 @@
+@(message: String)(implicit request: play.api.mvc.Request[Any])
+
+@main("N.O.D.E.A.T.H Over Under") {
+<form role="form" action="@routes.Application.addBet()" method="post">
+    <div class="form-group">
+        <label for="inputTitle">Title</label>
+        <input name="title" type="text" class="form-control" id="inputTitle" placeholder="Enter Bet Title">
+    </div>
+    <div class="form-group">
+        <label for="inputDescription">Description</label>
+        <input name="description" type="text" class="form-control" id="inputDescription" placeholder="Enter Bet Description">
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+}
