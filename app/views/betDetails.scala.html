@@ -1,6 +1,13 @@
-@(bet: models.Bet)(implicit request: play.api.mvc.Request[Any])
+@(bet: Bet)(implicit request: play.api.mvc.Request[Any])
 
 @main("N.O.D.E.A.T.H Over Under") {
 @header(bet.title, bet.description)
-@bet.peopleBets.length
+<div class="row marketing">
+    @for( personBet <- bet.peopleBets ) {
+    <div class="col-xs-6">
+        <h4>@personBet.name</h4>
+        <p>@personBet.betType</p>
+    </div>
+    }
+</div>
 }

@@ -1,12 +1,10 @@
 package controllers
 
-import models.BetType
+import models.Db
 import play.Logger
 import play.api.data._
 import play.api.data.Forms._
 import play.api.mvc._
-import play.db.ebean.Model.Finder
-import scala.collection.JavaConverters._
 
 object Application extends Controller {
 
@@ -15,8 +13,10 @@ object Application extends Controller {
    * Main page displaying all bets
    */
   def index = Action { implicit request =>
-    val bets: java.util.List[models.Bet] = new Finder[Long, models.Bet](classOf[Long], classOf[models.Bet]).all()
-    Ok(views.html.index(bets.asScala.toList))
+    val bets = Db.query[models.Bet].fetch()
+    val betViewModels = bets.map(b => new viewmodels.Bet(b.id, b.title, b.description, b.peopleBets)).toList
+    val temp = new viewmodels.Bet(1, "TestTitle", "Test", List())
+    Ok(views.html.index(betViewModels))
   }
 
   /**
@@ -32,8 +32,8 @@ object Application extends Controller {
    * Place a new bet page
    */
   def placeBet(betId: Long) = Action { implicit request =>
-    val bet = new Finder[Long, models.Bet](classOf[Long], classOf[models.Bet]).byId(betId)
-    Ok(views.html.placeBet(bet))
+    val bet = Db.query[models.Bet].whereEqual("id", betId).fetchOne().get
+    Ok(views.html.placeBet(new viewmodels.Bet(bet.id, bet.title, bet.description, bet.peopleBets)))
   }
 
   /**
@@ -41,8 +41,18 @@ object Application extends Controller {
    * Bet details page
    */
   def getBetDetails(betId: Long) = Action { implicit request =>
-    val bet = new Finder[Long, models.Bet](classOf[Long], classOf[models.Bet]).byId(betId)
+    val bet = Db.query[models.Bet].whereEqual("id", betId).fetchOne().get
+    Logger.debug("personbets: " + bet.peopleBets.length)
     Ok(views.html.betDetails(bet))
+  }
+
+
+  def deleteBet(name: String) = Action {
+    Db.query[models.Bet]
+      .whereEqual("title", name)
+      .fetchOne()
+      .map(a => Db.delete(a))
+    Ok
   }
 
   /** addPersonBet Form mapping */
@@ -61,11 +71,13 @@ object Application extends Controller {
    */
   def addPersonBet = Action { implicit request =>
     val personBet = personBetForm.bindFromRequest().get
-    val model = new models.PersonBet(personBet.name, BetType.fromString(personBet.betType))
-    val bet = new Finder[Long, models.Bet](classOf[Long], classOf[models.Bet]).byId(personBet.betId)
-    bet.peopleBets :+ model
-    model.save()
-    bet.save()
+    val model = Db.save(new models.PersonBet(personBet.name, personBet.betType))
+
+    Db.query[models.Bet]
+      .whereEqual("id", personBet.betId)
+      .fetchOne()
+      .map(a => a.copy(peopleBets = a.peopleBets :+ model))
+      .map(a => Db.save(a))
 
     Redirect(routes.Application.index)
   }
@@ -85,7 +97,7 @@ object Application extends Controller {
    */
   def addBet = Action { implicit request =>
     val bet = betForm.bindFromRequest().get
-    new models.Bet(bet.title, bet.description).save()
+    Db.save(models.Bet(bet.title, bet.description, List()))
     Redirect(routes.Application.index)
   }
 }

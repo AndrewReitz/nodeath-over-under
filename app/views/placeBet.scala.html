@@ -1,4 +1,4 @@
-@(bet: models.Bet)(implicit request: play.api.mvc.Request[Any])
+@(bet: viewmodels.Bet)(implicit request: play.api.mvc.Request[Any])
 
 @main("N.O.D.E.A.T.H Over Under") {
 @header(bet.title, bet.description)
@@ -14,9 +14,7 @@
             <option>Under</option>
         </select>
     </div>
-    <div class="hidden">
-        <input name="betId" type="number">@bet.id</input>
-    </div>
+    <input class="hidden" name="betId" type="number" value="@bet.id"/>
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
 <p></p>
