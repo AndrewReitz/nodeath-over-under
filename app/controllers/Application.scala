@@ -47,6 +47,11 @@ object Application extends Controller {
   }
 
 
+  /**
+   * DELETE
+   * @param name name of bet to delete
+   * @return ok
+   */
   def deleteBet(name: String) = Action {
     Db.query[models.Bet]
       .whereEqual("title", name)
@@ -55,7 +60,11 @@ object Application extends Controller {
     Ok
   }
 
-  /** addPersonBet Form mapping */
+  def getNewBets = WebSocket.using[String] { request =>
+
+  }
+
+    /** addPersonBet Form mapping */
   case class PersonBet(name: String, betType: String, betId: Long)
   val personBetForm = Form(
     mapping(

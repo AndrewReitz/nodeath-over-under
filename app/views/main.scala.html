@@ -25,8 +25,8 @@
 
         <div class="header">
             <ul class="nav nav-pills pull-right">
-                <li @if(request.uri == "/") { class="active" }><a href="@routes.Application.index">Home</a></li>
-                <li @if(request.uri == "/create") { class="active" }><a href="@routes.Application.createNewBet">Create Bet</a></li>
+                <li@if(request.uri == "/") {class="active"}><a href="@routes.Application.index">Home</a></li>
+                <li@if(request.uri == "/create") {class="active"}><a href="@routes.Application.createNewBet">Create Bet</a></li>
             </ul>
             <h3 class="text-muted">N.O.D.E.A.T.H Over Under</h3>
         </div>
