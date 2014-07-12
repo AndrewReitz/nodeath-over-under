@@ -1,0 +1,11 @@
+@(bets: List[viewmodels.Bet])
+<div class="row marketing">
+@for( bet <- bets ) {
+    <div class="col-xs-6 bet-container" data-bet-id="@bet.id">
+        <h4>@bet.title</h4>
+        <p>@bet.description</p>
+        <a href="@routes.Application.placeBet(bet.id)"><button type="button" class="btn btn-info">Make Bet</button></a>
+        <a href="@routes.Application.getBetDetails(bet.id)"><button type="button" class="btn btn-primary">Details</button></a>
+    </div>
+}
+</div>
