@@ -1,4 +1,4 @@
-name := """play""" // needs to be names this for OpenShift
+name := """nodeath-over-under""" // needs to be names this for OpenShift
 
 version := "1.0-SNAPSHOT"
 
