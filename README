@@ -1,4 +1,3 @@
-This is your new Play application
-=================================
+#My First Play Application
 
-This file will be packaged with your application, when using `activator dist`.
+A simple and silly betting program
