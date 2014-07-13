@@ -60,10 +60,6 @@ object Application extends Controller {
     Ok
   }
 
-  def getNewBets = WebSocket.using[String] { request =>
-
-  }
-
     /** addPersonBet Form mapping */
   case class PersonBet(name: String, betType: String, betId: Long)
   val personBetForm = Form(
