@@ -1,3 +1,3 @@
-#My First Play Application
+# My First Play Application
 
 A simple and silly betting program
